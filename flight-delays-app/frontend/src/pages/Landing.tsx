@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, Divider, Group, List, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { Alert, Box, Button, Container, Divider, Group, SimpleGrid, Stack, Text, Title } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import { useHighlights, useMe } from '../api/hooks';
@@ -48,12 +48,6 @@ function Findings({ hl }: { hl: Highlights }) {
   );
 }
 
-const ROLES: { title: string; items: string[] }[] = [
-  { title: 'Пользователь', items: ['Показатели пунктуальности с фильтрами по авиакомпании, аэропорту, периоду и времени вылета', 'Рейтинг авиакомпаний с доверительными интервалами', 'Анализ по часам, дням недели и аэропортам', 'Сравнение двух авиакомпаний'] },
-  { title: 'Аналитик', items: ['Всё, что доступно пользователю', 'Результаты корреляционного, хи-квадрат, непараметрического и регрессионного анализа', 'Отчёты в Excel и PDF, выгрузка таблиц в CSV', 'Сохранённые наборы фильтров'] },
-  { title: 'Администратор', items: ['Управление пользователями и ролями', 'Журнал действий', 'Справочники авиакомпаний и аэропортов', 'Сведения о загруженных данных'] },
-];
-
 export default function Landing() {
   const { data: hl, isLoading } = useHighlights();
   const { data: me } = useMe();
@@ -65,10 +59,10 @@ export default function Landing() {
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing={48}>
             <Stack gap="md" justify="center">
               <Title order={1} className="page-title" fz={{ base: 34, md: 48 }} lh={1.05}>
-                Насколько пунктуальны рейсы и от чего это зависит
+                Насколько пунктуальны авиакомпании
               </Title>
               <Text size="lg" maw={560} c="dimmed">
-                Анализ задержек прибытия: как они зависят от времени вылета и чем различаются авиакомпании. Интерактивные показатели, графики и результаты статистического анализа.
+                Анализ задержек рейсов: как они зависят от времени вылета и чем отличаются авиакомпании. Интерактивные показатели, графики и результаты статистического анализа.
               </Text>
               <Group mt="xs">
                 {me ? (
@@ -101,17 +95,6 @@ export default function Landing() {
             <Box style={{ gridColumn: 'span 2' }}><Findings hl={hl} /></Box>
           </SimpleGrid>
         )}
-
-        <Divider my={48} />
-        <Title order={2} className="page-title" mb="lg">Что доступно по ролям</Title>
-        <SimpleGrid cols={{ base: 1, md: 3 }} spacing={32}>
-          {ROLES.map((r) => (
-            <div key={r.title}>
-              <Title order={3} size="h4" className="page-title" mb="xs">{r.title}</Title>
-              <List size="sm" spacing={6}>{r.items.map((i) => <List.Item key={i}>{i}</List.Item>)}</List>
-            </div>
-          ))}
-        </SimpleGrid>
       </Container>
     </>
   );

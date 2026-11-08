@@ -18,7 +18,7 @@ function Logo() {
         <rect width="64" height="64" rx="10" fill="#17324F" />
         <path d="M12 40h40v4H12zM16 22h6v14h-6zM27 16h6v20h-6zM38 26h6v10h-6z" fill={COLORS.amber} />
       </svg>
-      <Text className="page-title" fw={700} size="lg" c="white" style={{ letterSpacing: 0 }}>Задержки рейсов</Text>
+      <Text className="page-title" fw={700} size="lg" c="white" style={{ letterSpacing: 0 }}>AeroPulse</Text>
     </Group>
   );
 }
